@@ -1,9 +1,8 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:meditation_app_ui/assets/resources/resources.dart';
 import 'package:meditation_app_ui/features/account_setup/screens/terms_conditions/terms_widget_model.dart';
 import 'package:meditation_app_ui/features/account_setup/widgets/condition_card.dart';
+import 'package:meditation_app_ui/features/common/widgets/back_button.dart';
 import 'package:meditation_app_ui/features/common/widgets/el_button.dart';
 
 class TermsScreen extends ElementaryWidget<TermsWM> {
@@ -22,18 +21,9 @@ class TermsScreen extends ElementaryWidget<TermsWM> {
             width: double.infinity,
             child: Column(
               children: [
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
-                  child: IconButton(
-                    onPressed: wm.onBackTap,
-                    icon: SvgPicture.asset(
-                      IconPaths.arrowLeft,
-                      colorFilter: ColorFilter.mode(
-                        wm.iconColor,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
+                  child: MyBackButton(),
                 ),
                 const SizedBox(height: 16.0),
                 Padding(
@@ -57,11 +47,19 @@ class TermsScreen extends ElementaryWidget<TermsWM> {
                               shrinkWrap: true,
                               separatorBuilder: (context, _) =>
                                   const SizedBox(height: 27.0),
-                              itemBuilder: (context, index) => ConditionCard(
-                                description: wm.conditionDescriptions[index],
-                                isAgree: value[index],
-                                onToggle: (_) => wm.onConditionTap(index),
-                              ),
+                              itemBuilder: (context, index) {
+                                final animationKey =
+                                    index > wm.conditionAnimationKeys.length - 1
+                                        ? null
+                                        : wm.conditionAnimationKeys[index];
+                                return ConditionCard(
+                                  animationKey: animationKey,
+                                  description: wm.conditionDescriptions[index],
+                                  isAgree: value[index],
+                                  onToggle: (_) => wm.onConditionTap(index),
+                                  required_: wm.requiredConditionList[index],
+                                );
+                              },
                             );
                           },
                         ),
@@ -72,11 +70,10 @@ class TermsScreen extends ElementaryWidget<TermsWM> {
                         ),
                         const SizedBox(height: 12.0),
                         ElButton(
-                          onPressed: wm.onAcceptAllTap,
+                          onPressed: wm.onNextTap,
                           alternativeBackground: true,
-                          child: Text(
+                          child: const Text(
                             'Next',
-                            style: wm.acceptAllButtonTextStyle,
                           ),
                         ),
                         const SizedBox(height: 28.0),

@@ -20,12 +20,14 @@ animatedSwitchPage(
   BuildContext context,
   Widget page, {
   RouteAnimation routeAnimation = RouteAnimation.fade,
+  Duration duration = const Duration(milliseconds: 500),
+  Curve curve = Curves.ease,
   bool withBack = true,
   bool clearNavigator = false,
 }) {
   final route = PageRouteBuilder(
-    transitionDuration: const Duration(milliseconds: 500),
-    reverseTransitionDuration: const Duration(milliseconds: 500),
+    transitionDuration: duration,
+    reverseTransitionDuration: duration,
     pageBuilder: (context, animation, secondaryAnimation) => page,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       if (slideAnimations.contains(routeAnimation)) {
@@ -48,7 +50,6 @@ animatedSwitchPage(
             break;
         }
         const end = Offset.zero;
-        const curve = Curves.ease;
         final tween = Tween(
           begin: begin,
           end: end,

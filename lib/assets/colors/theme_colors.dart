@@ -9,10 +9,10 @@ class ThemeColors {
   final OtherExtColors otherColors;
 
   final Color backgroundColor;
-  static const Color primary = Color(0xFF22C55E);
+  static const Color primary = Color(0xFF1DAC92);
   static const Color secondary = Color(0xFF03314B);
   final Color icon;
-  static const Color divider = Color(0xFFF1F5F9);
+  final Color divider;
   static const Color buttonColor1 = Color(0xFF1DAC92);
   static const Color buttonColor2 = Color(0xFF228E8E);
 
@@ -23,16 +23,18 @@ class ThemeColors {
     required this.otherColors,
     required this.backgroundColor,
     required this.icon,
+    required this.divider,
   });
 }
 
 final lightThemeColors = ThemeColors(
   backgroundColor: tokensBackground.light,
   icon: TextColors.black.light,
+  divider: OtherColors.empty.light,
   tokenColors: TokenExtColors(
-    tokensPrimaryBase: tokensPrimaryBase.light,
-    tokensPrimary100: tokensPrimary100.light,
-    tokensStroke: tokensStroke.light,
+    primaryBase: tokensPrimaryBase.light,
+    primary100: tokensPrimary100.light,
+    stroke: tokensStroke.light,
   ),
   textColors: TextExtColors(
     secondary: TextColors.secondary.light,
@@ -58,10 +60,11 @@ final lightThemeColors = ThemeColors(
 final darkThemeColors = ThemeColors(
   backgroundColor: tokensBackground.dark,
   icon: TextColors.black.dark,
+  divider: OtherColors.empty.dark,
   tokenColors: TokenExtColors(
-    tokensPrimaryBase: tokensPrimaryBase.dark,
-    tokensPrimary100: tokensPrimary100.dark,
-    tokensStroke: tokensStroke.dark,
+    primaryBase: tokensPrimaryBase.dark,
+    primary100: tokensPrimary100.dark,
+    stroke: tokensStroke.dark,
   ),
   textColors: TextExtColors(
     secondary: TextColors.secondary.dark,

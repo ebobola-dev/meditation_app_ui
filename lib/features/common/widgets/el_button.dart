@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_app_ui/assets/colors/ext_colors.dart';
 import 'package:meditation_app_ui/assets/colors/theme_colors.dart';
+import 'package:meditation_app_ui/assets/styles/button_styles.dart';
 
 class ElButton extends StatelessWidget {
   final Widget child;
@@ -23,14 +24,17 @@ class ElButton extends StatelessWidget {
       backgroundColor = null;
     }
 
+    final extButtonTextStyles = Theme.of(context).extension<ButtonExtStyles>()!;
+
     return Container(
-      height: 60,
+      height: 56.0,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12.0),
-        color: onPressed == null
-            ? Theme.of(context).extension<InputExtColors>()!.label
-            : backgroundColor,
+        border: Border.all(
+          color: Theme.of(context).extension<TokenExtColors>()!.stroke,
+        ),
+        color: backgroundColor,
         gradient: alternativeBackground
             ? null
             : const LinearGradient(
@@ -44,7 +48,12 @@ class ElButton extends StatelessWidget {
       ),
       child: ElevatedButton(
         onPressed: onPressed,
-        child: child,
+        child: DefaultTextStyle(
+          style: alternativeBackground
+              ? extButtonTextStyles.alternativeElTextStyle
+              : extButtonTextStyles.elTextStyle,
+          child: child,
+        ),
       ),
     );
   }

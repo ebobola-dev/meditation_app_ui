@@ -48,8 +48,9 @@ class PromoScreen extends ElementaryWidget<PromoWM> {
                             builder: (context, value, _) {
                               return ElButton(
                                 onPressed: wm.onNextTap,
-                                child: Text(value == 3 ? "Let's begin" : 'Next',
-                                    style: wm.elButtonTextStyle),
+                                child: Text(
+                                  value == 3 ? "Let's begin" : 'Next',
+                                ),
                               );
                             }),
                         const SizedBox(height: 3.0),

@@ -10,4 +10,6 @@ class ImagePaths {
   static const whiteImage = '${_basePath}white_image.png';
   static const blueImage = '${_basePath}blue_image.png';
   static const aquaOrangeImage = '${_basePath}aqua_orange_image.png';
+
+  static const preSign = '${_basePath}pre_sign.png';
 }

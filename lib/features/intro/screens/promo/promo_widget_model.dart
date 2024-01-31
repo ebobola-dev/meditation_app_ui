@@ -1,9 +1,11 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:meditation_app_ui/assets/colors/primary_colors.dart';
+import 'package:meditation_app_ui/features/account_setup/screens/terms_conditions/terms_screen.dart';
 import 'package:meditation_app_ui/features/intro/models/promo_page_data.dart';
 import 'package:meditation_app_ui/features/intro/screens/promo/promo_model.dart';
 import 'package:meditation_app_ui/features/intro/screens/promo/promo_screen.dart';
+import 'package:meditation_app_ui/utils/animated_switch_page.dart';
 
 PromoWM createPromoWM(BuildContext context) => PromoWM(PromoModel());
 
@@ -30,13 +32,6 @@ class PromoWM extends WidgetModel<PromoScreen, PromoModel> implements IPromoWM {
 
   @override
   TextStyle get descriptionStyle => Theme.of(context).textTheme.bodyMedium!;
-
-  @override
-  TextStyle get elButtonTextStyle =>
-      Theme.of(context).textTheme.bodyLarge!.copyWith(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          );
 
   @override
   TextStyle get textButtonTextStyle =>
@@ -76,12 +71,20 @@ class PromoWM extends WidgetModel<PromoScreen, PromoModel> implements IPromoWM {
       );
       return;
     }
-    model.toSignIn(context);
+    toSignIn();
   }
 
   @override
   void onSingInTap() {
-    model.toSignIn(context);
+    toSignIn();
+  }
+
+  void toSignIn() {
+    animatedSwitchPage(
+      context,
+      const TermsScreen(),
+      routeAnimation: RouteAnimation.slideBottom,
+    );
   }
 }
 
@@ -91,7 +94,6 @@ abstract interface class IPromoWM implements IWidgetModel {
   List<PromoPageData> get pagesData;
   TextStyle get titleStyle;
   TextStyle get descriptionStyle;
-  TextStyle get elButtonTextStyle;
   TextStyle get textButtonTextStyle;
   Color get primaryColor;
   Color get tabSelectorActiveColor;

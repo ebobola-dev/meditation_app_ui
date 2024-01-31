@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class TokenExtColors extends ThemeExtension<TokenExtColors> {
-  final Color tokensPrimaryBase;
-  final Color tokensPrimary100;
-  final Color tokensStroke;
+  final Color primaryBase;
+  final Color primary100;
+  final Color stroke;
 
   TokenExtColors({
-    required this.tokensPrimaryBase,
-    required this.tokensPrimary100,
-    required this.tokensStroke,
+    required this.primaryBase,
+    required this.primary100,
+    required this.stroke,
   });
 
   @override
@@ -24,11 +24,9 @@ class TokenExtColors extends ThemeExtension<TokenExtColors> {
     }
     other as TokenExtColors;
     return TokenExtColors(
-      tokensPrimaryBase:
-          Color.lerp(tokensPrimaryBase, other.tokensPrimaryBase, t)!,
-      tokensPrimary100:
-          Color.lerp(tokensPrimary100, other.tokensPrimary100, t)!,
-      tokensStroke: Color.lerp(tokensStroke, other.tokensStroke, t)!,
+      primaryBase: Color.lerp(primaryBase, other.primaryBase, t)!,
+      primary100: Color.lerp(primary100, other.primary100, t)!,
+      stroke: Color.lerp(stroke, other.stroke, t)!,
     );
   }
 }

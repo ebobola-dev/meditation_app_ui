@@ -1,9 +1,6 @@
 import 'package:elementary/elementary.dart';
-import 'package:flutter/material.dart';
 import 'package:meditation_app_ui/assets/resources/resources.dart';
-import 'package:meditation_app_ui/features/account_setup/screens/terms_conditions/terms_screen.dart';
 import 'package:meditation_app_ui/features/intro/models/promo_page_data.dart';
-import 'package:meditation_app_ui/utils/animated_switch_page.dart';
 
 class PromoModel extends ElementaryModel {
   int _currentPage = 0;
@@ -37,13 +34,5 @@ class PromoModel extends ElementaryModel {
   int swipe(int newPage) {
     _currentPage = newPage;
     return _currentPage;
-  }
-
-  void toSignIn(BuildContext context) {
-    animatedSwitchPage(
-      context,
-      const TermsScreen(),
-      routeAnimation: RouteAnimation.slideBottom,
-    );
   }
 }
